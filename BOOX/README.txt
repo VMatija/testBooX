@@ -1,0 +1,1 @@
+Mergano v master, za popravit se baza
