@@ -5,7 +5,13 @@
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
 
 <o:RootObject Id="o1">
-<ca:Creator>
+<c:Children>
+<o:Model Id="o2">
+<a:ObjectID>183371E6-301F-40DB-A027-9ABB85FD6092</a:ObjectID>
+<a:Name>BooX</a:Name>
+<a:Code>BooX</a:Code>
+<a:CreationDate>1479326095</a:CreationDate>
+<a:Creator>LeDolan</a:Creator>
 <a:ModificationDate>1479560111</a:ModificationDate>
 <a:Modifier>LeDolan</a:Modifier>
 <a:History>ORG {AAAC3BDF-C5A2-45B8-9686-BE90226AE44B}
