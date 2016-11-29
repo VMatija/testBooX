@@ -1,0 +1,77 @@
+﻿			STRAN PROJEKT
++---------------------------------------------------------------+
+| Obnovitev zakaj gre pri našem projektu			|
+| Razložimo osnovne funkcije in koponente. Povzetek projekta 	|
++---------------------------------------------------------------+
+			KJE SMO
++---------------------------------------------------------------+
+| Kako nam gre zaenkrat na projektu. Smo na pravi poti		|
+| Imamo manjšo časovno stisko zaradi ostalih projektov na faksu	|
+| Rešujemo problem stiske s časom				|
+| Preskok na aktivnosti, ki so v prihodnosti (Aktivnost A31)	|
+| S tem bomo prišparali na času					|
++---------------------------------------------------------------+
+			AKTIVNOST A11
++---------------------------------------------------------------+
+| Katera je aktivnos a11 za naš projekt				|			
+| Določitev orodij in programske opreme				|
+| Aktivnost uspešno zaključena					|
++---------------------------------------------------------------+
+			AKTIVNOST A22
++---------------------------------------------------------------+
+| Katera je aktivnost a21 za naš projekt			|
+| Postavitev podatkovne baze					|
+| Posamezni koraki podatkovne baze				|
+| Orodja ki smo jih uporabili					|
+| Končni izdelek						|
+| Aktivnost uspešno zaključena					|
++---------------------------------------------------------------+
+			AKTIVNOST A22
++---------------------------------------------------------------+
+| Katera je aktivnost a22 za naš projekt			|	
+| API za dostop do podatkovne baze				|
+| Predpogoj za to aktivnost (A21)				|
+| Smo "kao" na koncu te aktivnosti				|
+| Imeli smo manjše težave (KAO)					|
++---------------------------------------------------------------+
+			DODATNA AKTIVNOST LOGO
++---------------------------------------------------------------+
+| Izdelava logota za spletno stran				|
+| Več različic logota.						|
+| Smo poskrbeli za prepoznavnost na trgu			|
+| Kako izgleda končni izdelek					|
+| Aktivnost zaključena						|
++---------------------------------------------------------------+
+			AKTIVNOST A23
++-------------------------------------------------------------------------------+
+| Katera je to aktivnost za naš projekt.					| 
+| Integracija plačilnih sredstev za aplikacijo					| 
+| Predpogoj sta aktivnosti A21 in A22						| 
+| Ker A22 še ni zaključena je ta aktivnost na čakanju				| 
+| Ideje in zamisli v zraku. Potrebno počakati na konec A22			| 
+| S to aktivnostjo bomo morali malce pohiteti					| 
+| Namesto dveh razvijalcev se jo bomo lotili kar vsi. Hitreje do končnega cilja	| 
++-------------------------------------------------------------------------------+
+			AKTIVNOST A31
++-------------------------------------------------------------------------------+
+| Katera je to aktivnost za naš projekt. 					| 
+| Izdelava papirnatega prototipa strani in SITEMAP-a				| 
+| Predpogoj za to aktivnost je aktivnost A11					| 
+| Papirnat prototip. Drevesna struktura ni kompleksna.				| 
+| To moramo še narisat in narest da bomo imeli osnovno predstavo o strani.	| 
++-------------------------------------------------------------------------------+
+			KAKO NAPREJ
++-------------------------------------------------------------------------------+
+| Sprav moramo rešiti stisko s časom.						| 
+| Čimpreje zaključiti aktivnosti in začeti z naslednjimi.			| 
+| Moramo se vrniti na načrtano pot, ki smo si jo zadali v predlogu načrta.	| 
+| Naslednjih aktivnosti se bomo lotili z večjim zagonom in večjo vnemo. 	| 
+| Tako bomo preje prišli do začrtanega cilja					| 
+| Začetek z aktivnostjo A32, katera nam predstavlja večino projekta.		| 
+| Programiranje in izgled spletne strani in povezavo z zaledjem sistema.	| 
+| Projekt pa bomo zaključili z A33						| 
+| dokumentacija in predstavitev projekta in končenga izdelka			| 
++-------------------------------------------------------------------------------+
+			ZAKLJUČEK!!!
+
+
