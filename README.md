@@ -1,5 +1,5 @@
 # BOOX
-Exchange
+Student literature exchange
 
 Za dodati:
 -Geslo username
