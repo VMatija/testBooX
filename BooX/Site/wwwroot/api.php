@@ -115,6 +115,13 @@
 		"description" => "Error"
 	);
 
+	// PDO objekt za povezavo na bazo
+	$conn = new PDO("mysql:host=eu-cdbr-azure-west-a.cloudapp.net; dbname=booxdb", "b62531693a0bc9", "6e560170");
+	var_dump($conn);
+
+	// [ ] Povezava na bazo
+	// [ ] Izpis gradiva
+
 	$metoda = $_SERVER["REQUEST_METHOD"];
 	$parametri = explode("/", trim($_SERVER["PATH_INFO"], "/"));
 
