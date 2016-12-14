@@ -8,13 +8,15 @@
 	<body>
 		<div style="background-color: white; display: inline-block; width: 25%; opacity: 0.75;">
 			<?php
+				include("../../security.php");
+
 				echo "<h1>GRADIVO</h1>";
 
-				$conn = new PDO("mysql:host=eu-cdbr-azure-west-a.cloudapp.net; dbname=booxdb", "b62531693a0bc9", "6e560170");
+				$conn = new PDO("mysql:host=eu-cdbr-azure-west-a.cloudapp.net; dbname=booxdb", $user, $pass);
 
 				$rezultat = $conn->query("SELECT * FROM gradivo");
 				foreach ($rezultat as $vrstica) {
-					var_dump($vrstica);
+					//var_dump($vrstica);
 					echo "<br /><br />";
 				}
 			?>
