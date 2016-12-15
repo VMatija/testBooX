@@ -1,6 +1,6 @@
 <?php
 
-	include "../../security.php";
+	include "../security.php";
 
 	/*
 		JSPA - JSON Simple PHP API
@@ -124,9 +124,9 @@
 		}
 	*/
 
-	//header("Content-type: application/json");
+	header("Content-type: application/json");
 
-	// Tovarna napak
+	// Tovarna statusov
 	function statusFactory($status, $msg) {
 		$error = array(
 			"status" => $status,
@@ -159,43 +159,70 @@
 
 	// search/query
 	function search_query($query) {
-		// Parametri za konstrukcijo poizvedbe
-		$extra = array("avtor", "profesor", "fakulteta", "predmet");
-		$basic = array("naziv", "oblika", "novo");
-		$gt = array("cenaOd");
-		$lt = array("cenaDo");
 		// Priprava poizvedbe
-		$sql = "SELECT * FROM gradivo NATURAL JOIN uporabnik NATURAL JOIN oblika";
-		$joins = "";
-		$where = " WHERE ";
+		$sql = " FROM Gradivo NATURAL JOIN Uporabnik NATURAL JOIN Oblika";
+		$select = "SELECT GradivoID, OblikaID, Email, ImeUporabnika, ImeGradiva, Cena, DatumNalozeno, Novo";
+		$join = "";
+		$where = " WHERE";
 		$fill = array();
 		// Sestavljanje poizvedbe z JOIN in WHERE pogoji
-		$params = explode("&", $query);
-		foreach ($params as $param) {
-			$pair = explode("=", $param);
-			$key = $pair[0];
-			$value = $pair[1];
-			if (in_array($key, $extra)) {
-				$joins = $joins . " NATURAL JOIN ?";
-				array_push($fill, $key);
-				$where = $where . $key . " = ? AND ";
-				array_push($fill, $value);
-			} else if (in_array($key, $basic)) {
-				$where = $where . $key . " = ? AND ";
-				array_push($fill, $value);
-			} else if (in_array($key, $gt)) {
-				$where = $where . "cena" . " > ? AND ";
-				array_push($fill, $value);
-			} else if (in_array($key, $lt)) {
-				$where = $where . "cena" . " < ? AND ";
-				array_push($fill, $value);
+		for ($i = 1; $i < count($query); $i += 2) {
+			$key = $query[$i - 1];
+			$value = $query[$i];
+			switch ($key) {
+				// Parametri iz sifrantov
+				case "avtor":
+					$select = $select . ", AvtorID, ImeAvtorja, PriimekAvtorja";
+					$join = $join . " NATURAL JOIN JeAvtor NATURAL JOIN Avtor";
+					$where = $where . " AvtorID = ? AND";
+					array_push($fill, $value);
+					break;
+				case "profesor":
+					$select = $select . ", ProfesorID, ImeProfesorja, PriimekProfesorja";
+					$join = $join . " NATURAL JOIN ProfesorZahteva";
+					$where = $where . " ProfesorID = ? AND";
+					array_push($fill, $value);
+					break;
+				case "fakulteta":
+					$select = $select . ", FakultetaID, NazivFakultete";
+					$join = $join . " NATURAL JOIN NaFakulteti NATURAL JOIN Fakulteta";
+					$where = $where . " FakultetaID = ? AND";
+					array_push($fill, $value);
+					break;
+				case "predmet":
+					$select = $select . ", PredmetID, ImePredmeta";
+					$join = $join . " NATURAL JOIN PriPredmetu NATURAL JOIN Predmet";
+					$where = $where . " PredmetID = ? AND";
+					array_push($fill, $value);
+					break;
+				// Parametri iz gradiva
+				case "naslov":
+					$where = $where . " ImeGradiva = ? AND";
+					array_push($fill, $value);
+					break;
+				case "oblika":
+					$where = $where . " OblikaID = ? AND";
+					array_push($fill, $value);
+					break;
+				case "novo":
+					$where = $where . " Novo = ? AND";
+					array_push($fill, $value);
+					break;
+				case "cenaOd":
+					$where = $where . " Cena >= ? AND";
+					array_push($fill, floatval($value));
+					break;
+				case "cenaDo":
+					$where = $where . " Cena <= ? AND";
+					array_push($fill, floatval($value));
+					break;
 			}
 		}
 		// Odstranimo AND v zadnjem WHERE pogoju
-		$where = preg_replace("/ AND $/", "", $where);
+		$where = preg_replace("/ AND$/", "", $where);
 		// Naredimo poizvedbo na bazi
 		$pdo = getBasicConnection();
-		$sql = $sql . $joins . $where;
+		$sql = $select . $sql . $join . $where;
 		$result = getAll($pdo, $sql, $fill);
 		$books = array();
 		foreach ($result as $row) {
@@ -234,11 +261,6 @@
 
 	}
 
-	
-
-	// PDO objekt za povezavo na bazo
-	$conn = new PDO("mysql:host=eu-cdbr-azure-west-a.cloudapp.net; dbname=booxdb", $user, $pass);
-
 	$metoda = $_SERVER["REQUEST_METHOD"];
 	$parametri = explode("/", trim($_SERVER["PATH_INFO"], "/"));
 
@@ -257,9 +279,8 @@
 			}
 			
 			break;
-		
 		case "search":
-			search_query($parametri[1]);
+			search_query(array_slice($parametri, 1));
 			break;
 		default:
 			break;
