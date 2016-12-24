@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=320, user-scalable=no"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Camera test</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="load-image.all.min.js"></script>
+    <script type="text/javascript" src="./node_modules/tesseract.js/dist/tesseract.js"></script>
+    <script type="text/javascript" src="require.js"></script>
+
+
+
+</head>
+
+<body>
+
+<input type="file" accept="image/*" id="takePictureField" capture>
+<br>
+<br>
+
+<br>
+
+<div id="myProgress">
+    <div id="myBar">
+        <div id="label">0%</div>
+    </div>
+</div>
+
+<div id="recognizedText"></div>
+
+<script>
+    var desiredWidth;
+    var elem = document.getElementById("myBar");
+
+    var maxW = 1024;
+    var maxH = 1024;
+
+
+    $(document).ready(function () {
+        console.log('onReady');
+        desiredWidth = window.innerWidth;
+
+        document.getElementById('takePictureField').onchange = function (e) {
+            var img = loadImage(
+                    e.target.files[0],
+                    function (img) {
+                        document.body.appendChild(img);
+                    },
+                    {
+                        maxWidth: maxW,
+                        maxHeight: maxH,
+                        crop: true,
+                        canvas: true
+                    }
+            );
+            if (!img) {
+                alert("Could not load image. Please try again.");
+            }
+
+            img.onload = function () {
+                Tesseract.recognize(img)
+                        .progress(function (message) {
+                            if (message.status == "recognizing text") {
+                                console.log(message.status);
+                                elem.style.width = message.progress * 100 + '%';
+                                document.getElementById("label").innerHTML = Math.round(message.progress * 100) + '%';
+                            } else {
+                                document.getElementById("label").innerHTML = message.status;
+                            }
+                        })
+                        .then(function (result) {
+                            $("#recognizedText").text(result.text);
+                            $("#loaderDiv").css("display", "none");
+                        });
+            };
+        };
+
+    });
+
+</script>
+</body>
+
+</html>
