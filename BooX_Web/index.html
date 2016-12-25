@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BooX | Home</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<script src="js/mobile.js" type="text/javascript"></script>
+</head>
+
+<script>
+function hover(x) {
+	
+	
+	if(x.className == "ss"){	
+		x.setAttribute('src', 'images/ss_hover.png');
+		
+	}
+	
+	if(x.className == "sb"){
+		x.setAttribute('src', 'images/sb_hover.png');
+	}
+	
+	if(x.className == "login"){
+		x.setAttribute('src', 'images/login_hover.png');
+	}
+	
+	if(x.className == "register"){
+		x.setAttribute('src', 'images/register_hover.png');
+	}
+    
+	
+}
+
+function normal(x) {
+	if(x.className == "ss"){	
+		x.setAttribute('src', 'images/ss.png');	
+	}
+	
+	if(x.className == "sb"){
+		x.setAttribute('src', 'images/sb.png');
+	}
+	
+	if(x.className == "login"){
+		x.setAttribute('src', 'images/login.png');
+	}
+	
+	if(x.className == "register"){
+		x.setAttribute('src', 'images/register.png');
+	}
+}
+
+</script>
+
+
+<body>
+	<div id="page">
+		<div id="header">
+			<div id="navigation">
+				<span id="mobile-navigation">&nbsp;</span>
+				
+				<ul id="menu1">
+					<li class="selected">
+						<a href="index.html">Home</a> &nbsp;&nbsp;|
+					</li>
+					<li>
+						<a href="about.html">About</a>
+					</li>
+                </ul>
+					<a href="index.html" class="logo"><img src="images/logo.jpg" alt=""></a>
+			    <ul id="menu2">
+                    <li>        
+						<a href="contact.html">Contact</a> &nbsp;&nbsp;| 
+					</li>
+                    <li>
+						<a href="team.html">Team</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="body" class="home">
+			<div class="header">
+				<div>
+					<h1>ENOSTAVNA<br>izmenjava študijkse in druge literature</h1>
+					
+					<img onclick="window.location.replace('index.html')" onmouseover="hover(this)" onmouseout="normal(this)" src="images/ss.png" alt="" class="ss" style=" cursor: pointer; height: 300px; width: 310px; float: left; padding-top: 50px;">
+                    <img onclick="window.location.replace('index.html')" onmouseover="hover(this)" onmouseout="normal(this)"src="images/sb.png" alt="" class="sb" style=" cursor: pointer; height: 300px; width: 310px; float: right; padding-top: 50px;">
+                    <img onclick="window.location.replace('index.html')" onmouseover="hover(this)" onmouseout="normal(this)"src="images/login.png" alt="" class="login" style=" cursor: pointer; height: 200px; width: 200x; padding-top: 10px;">
+                    <img onclick="window.location.replace('index.html')" onmouseover="hover(this)" onmouseout="normal(this)"src="images/register.png"  alt="" class="register" style=" cursor: pointer; height: 200px; width: 200x; padding-top: 10px;">
+                    
+				</div>
+			</div>
+			<div class="body">
+				<div>
+					<h1>How does it work?</h1>
+					<p>sdokaspo dmaspod psdoapsdpo kd poasdpok aposkd sdpaosk podask pokad sdad.</p>
+					<a href="about.html" class="more">Read More</a>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div>
+				<div class="connect">
+					<a href="" class="twitter">twitter</a>
+					<a href="" class="facebook">facebook</a>
+					<a href="" class="googleplus">googleplus</a>
+				</div>
+				<p>&copy; 2017 by BooX. All rights reserved.</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
