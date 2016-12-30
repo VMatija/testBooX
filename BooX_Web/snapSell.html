@@ -7,7 +7,12 @@
     <title>Snap and Sell</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/mobile.css">
-    <script src="js/mobile.js" type="text/javascript"></script>
+    <!--<script src="js/mobile.js" type="text/javascript"></script>-->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/load-image.all.min.js"></script>
+    <script type="text/javascript" src="node_modules/tesseract.js/dist/tesseract.js"></script>
+    <script type="text/javascript" src="js/require.js"></script>
+
 </head>
 <body>
 <div id="page">
@@ -37,6 +42,7 @@
     <div id="body" class="contact">
         <div>
             <h1>Snap & Sell</h1>
+
             <div class="image-upload">
                 <label for="takePictureField">
                     <img src="images/aboutAll.png" alt="Please choose a file.">
@@ -63,5 +69,54 @@
         </div>
     </div>
 </div>
+
+<script>
+    var elem = document.getElementById("myBar");
+
+    var maxW = 1024;
+    var maxH = 1024;
+
+
+    $(document).ready(function () {
+        console.log('onReady');
+
+        document.getElementById('takePictureField').onchange = function (e) {
+            var img = loadImage(
+                    e.target.files[0],
+                    function (img) {
+                        document.body.appendChild(img);
+                    },
+                    {
+                        maxWidth: maxW,
+                        maxHeight: maxH,
+                        crop: true,
+                        canvas: true
+                    }
+            );
+            if (!img) {
+                alert("Could not load image. Please try again.");
+            }
+
+            img.onload = function () {
+                Tesseract.recognize(img)
+                        .progress(function (message) {
+                            if (message.status == "recognizing text") {
+                                console.log(message.status);
+                                elem.style.width = message.progress * 100 + '%';
+                                document.getElementById("label").innerHTML = Math.round(message.progress * 100) + '%';
+                            } else {
+                                document.getElementById("label").innerHTML = message.status;
+                            }
+                        })
+                        .then(function (result) {
+                            //TODO: DO SOMETHING WITH STRING result.text
+                            //alert(result.text);
+                        });
+            };
+        };
+
+    });
+</script>
+
 </body>
 </html>

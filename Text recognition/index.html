@@ -1,38 +1,37 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    <meta name="viewport" content="width=320, user-scalable=no"/>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Camera test</title>
+	<head>
+		<meta name="viewport" content="width=320, user-scalable=no"/>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+			<title>Camera test</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="load-image.all.min.js"></script>
-    <script type="text/javascript" src="./node_modules/tesseract.js/dist/tesseract.js"></script>
-    <script type="text/javascript" src="require.js"></script>
+			<link rel="stylesheet" type="text/css" href="style.css">
+				<script type="text/javascript" src="jquery-3.1.1.min.js"/>
+				<script type="text/javascript" src="load-image.all.min.js"/>
+				<script type="text/javascript" src="./node_modules/tesseract.js/dist/tesseract.js"/>
+				<script type="text/javascript" src="require.js"/>
 
 
 
-</head>
+			</head>
 
-<body>
+			<body>
 
-<input type="file" accept="image/*" id="takePictureField" capture>
-<br>
-<br>
+				<input type="file" accept="image/*" id="takePictureField" capture>
+					<br>
+						<br>
 
-<br>
+							<br>
 
-<div id="myProgress">
-    <div id="myBar">
-        <div id="label">0%</div>
-    </div>
-</div>
+								<div id="myProgress">
+									<div id="myBar">
+										<div id="label">0%</div>
+									</div>
+								</div>
 
-<div id="recognizedText"></div>
+								<div id="recognizedText"/>
 
-<script>
-    var desiredWidth;
+								<script>
     var elem = document.getElementById("myBar");
 
     var maxW = 1024;
@@ -41,7 +40,6 @@
 
     $(document).ready(function () {
         console.log('onReady');
-        desiredWidth = window.innerWidth;
 
         document.getElementById('takePictureField').onchange = function (e) {
             var img = loadImage(
@@ -80,7 +78,7 @@
 
     });
 
-</script>
-</body>
+								</script>
+							</body>
 
-</html>
+						</html>
