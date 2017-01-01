@@ -1,0 +1,10 @@
+#searchForm input, select, button {
+	width: 200px;
+	height: 24px;
+	margin: 0 24px 0 0;
+	padding: 12px;
+}
+
+#searchForm select, button {
+	height: 48px !important;
+}
