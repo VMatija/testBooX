@@ -122,6 +122,38 @@
 					}
 				]
 		}
+
+		//--------------------------------------------------------------------//
+		// insert_Book (insert/{OblikaID}/{Mail}/{ImeGradiva}/{Cena}/{Novo})  //
+		//--------------------------------------------------------------------//
+
+		{
+			"status": 0,
+			"description": OK,
+		}
+
+		//--------------------------------------------------//
+		// registerUser (register/{mail}/{name}/{password}) //
+		//--------------------------------------------------//
+
+		{
+	
+			"status": 0,
+			"description": OK,
+
+		}
+
+		//-----------------------------------//
+		// loginUser (login/{mail}/password) //
+		//-----------------------------------//
+
+		{
+	
+			"status": 0,
+			"description": OK,
+
+		}
+
 	*/
 
 	//header("Content-type: application/json");
@@ -257,9 +289,134 @@
 	}
 
 	// book/full/id
-	function book_full_id($bookId, $u, $p) {
+	function book_full_id($bookId) {
+		// Poizvedba na bazi
+
+		$pdo = getBasicConnection();
+		$sql = "SELECT * FROM gradivo WHERE GradivoID = ?";
+		$result = getAll($pdo, $sql, array($bookId));
+	
+		// Ce knjiga ne obstaja vrnemo napako
+		if (!$result) {
+			$response = statusFactory(1, "Knjiga z id " . $bookId . " ne obstaja!");
+			$json = json_encode($response, JSON_PRETTY_PRINT);
+			echo($json);
+			return;
+		}
+		$book = getBookFromRow($result[0]);
+		// Sestavljanje odgovora
+		$response = statusFactory(0, "OK");
+		$response["book"] = $book;
+		$json = json_encode($response, JSON_PRETTY_PRINT);
+		echo($json);
+	}
+
+	/*
+	 Usage: 
+
+	 insert/OblikaID/Mail/ImeGradiva/Cena/Novo
+	
+	*/
+	function insert_Book($OblikaID, $Mail, $ImeGradiva, $Cena, $Novo){
+		if (!existUser($Mail)){
+			$response = statusFactory(2, "Uporabnik ne obstaja");
+			$json = json_encode($response, JSON_PRETTY_PRINT);
+			echo($json);
+			return;
+		}
+		$pdo = getBasicConnection();
+		$statement = $pdo->prepare("INSERT INTO gradivo(OblikaID,Email,ImeGradiva,Cena,DatumNalozeno,Novo) VALUES ( :oblika ,:mail, :ime, :cena , CURDATE(), :novo )");
+        $statement->bindParam(":oblika", $OblikaID);
+        $statement->bindParam(":mail", $Mail);
+        $statement->bindParam(":ime", $ImeGradiva);
+        $statement->bindParam(":cena", $Cena);
+        $statement->bindParam(":novo", $Novo);
+        $statement->execute();
+        // Sestava odgovora
+		$response = statusFactory(0, "OK");
+		$json = json_encode($response, JSON_PRETTY_PRINT);
+		echo($json);
+ 
+	}
+
+	function existUser($email){
+		$pdo = getBasicConnection();
+		$statement = $pdo->prepare("SELECT * FROM uporabnik WHERE Email = :email");
+        $statement->bindParam(":email", $email);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+        $size = sizeof($result);
+        return $size == 1;
 
 	}
+
+	/*
+	usage:
+
+	register/mail/name/password
+
+	*/
+
+	function registerUser($email,$name,$geslo){
+		
+		if (existUser($email)){
+			$response = statusFactory(3, "Uporabnik ze obstaja");
+			$json = json_encode($response, JSON_PRETTY_PRINT);
+			echo($json);
+			return;
+		}
+
+		$pdo = getBasicConnection();
+		$statement = $pdo->prepare("INSERT INTO uporabnik(Email,ImeUporabnika,DatumPrijave,HashGesla) VALUES(:mail, :ime , CURDATE(), :hash )");
+        $statement->bindParam(":mail", $email);
+        $statement->bindParam(":ime", $name);
+        $statement->bindParam(":hash", sha1($geslo));
+        $statement->execute();
+        // Sestava odgovora
+		$response = statusFactory(0, "OK");
+		$json = json_encode($response, JSON_PRETTY_PRINT);
+		echo($json);
+ 	
+	}
+
+
+	/*
+	usage login/mail/geslo
+
+	*/
+	function loginChech($email, $geslo){
+		if (!existUser($email)){
+			$response = statusFactory(2, "Uporabnik ne obstaja");
+			$json = json_encode($response, JSON_PRETTY_PRINT);
+			echo($json);
+			return;
+		}
+		$pdo = getBasicConnection();
+		$statement = $pdo->prepare("SELECT * FROM uporabnik WHERE Email = :mail AND HashGesla = :hash");
+        $statement->bindParam(":mail", $email);
+        $statement->bindParam(":hash", sha1($geslo));
+        $statement->execute();
+
+
+        $res = $statement->fetchAll();
+
+        if (sizeof($res) == 1){
+		    // Sestava odgovora geslo je pravilno
+			$response = statusFactory(0, "OK");
+			$json = json_encode($response, JSON_PRETTY_PRINT);
+			echo($json);
+        }else{
+        	// Geslo ni pravilno
+        	$response = statusFactory(4, "Geslo je napacno");
+			$json = json_encode($response, JSON_PRETTY_PRINT);
+			echo($json);
+        }
+
+	}
+
+
 
 	$metoda = $_SERVER["REQUEST_METHOD"];
 	$parametri = explode("/", trim($_SERVER["PATH_INFO"], "/"));
@@ -275,13 +432,40 @@
 				book_id(intval($parametri[1]), $user, $pass);
 				$json = json_encode($response, JSON_PRETTY_PRINT);
 			} else if (count($parametri) == 3) {
-				book_full_id();
+				book_full_id(intval($parametri[2]));
 			}
 			
 			break;
 		case "search":
 			search_query(array_slice($parametri, 1));
 			break;
+		case "insert":
+			if (sizeof($parametri) == 6){
+				$oblika = urldecode(intval($parametri[1]));
+				$mail = urldecode($parametri[2]);
+				$ime = urldecode($parametri[3]);
+				$cena = urldecode(intval($parametri[4]));
+				$novo = urldecode(intval($parametri[5]));
+				insert_Book($oblika,$mail,$ime,$cena,$novo);
+			}
+			break;
+		case "register":
+			if (sizeof($parametri) == 4){
+				$mail = urldecode($parametri[1]);
+				$name = urldecode($parametri[2]);
+				$geslo = urldecode($parametri[3]);
+				registerUser($mail, $name, $geslo);
+			}
+			break;
+		case "login":
+			if(sizeof($parametri) == 3){
+				$mail = urldecode($parametri[1]);
+				$geslo = urldecode($parametri[2]);
+				loginChech($mail,$geslo);
+			}
+			break;
+
+
 		default:
 			break;
 	}
