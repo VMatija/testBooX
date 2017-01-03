@@ -107,7 +107,22 @@ function normal(x) {
 								<option value="75">75€</option>
 								<option value="100">100€</option>
 							</select>
-							<!-- ISCI -->
+							<!-- Oblika -->
+							<select name="oblika" id="oblika">
+								<option value="">Izberi obliko...</option>
+								<option value="1">Knjiga/fizični izvod</option>
+								<option value="2">Knjiga/PDF</option>
+								<option value="3">Zapiski/fizični izvod</option>
+								<option value="4">Zapiski/PDF</option>
+							</select>
+							<!-- TODO pridobi vrednosti iz baze -->
+							<!-- Profesor -->
+							<input type="text" placeholder="Profesor" name="profesor" id="profesor" />
+							<!-- Fakulteta -->
+							<input type="text" placeholder="Fakulteta" name="fakulteta" id="fakulteta" />
+							<!-- Predmet -->
+							<input type="text" placeholder="Predmet" name="predmet" id="predmet" />
+							<!-- ISČI -->
 							<button type="submit">Išči</button>
 						</form>
 					</div>
@@ -127,7 +142,11 @@ function normal(x) {
 								var naslov = $("#naslov").val();
 								var avtor = $("#avtor").val();
 								var cena = $("#cena").val();
-								// sestacimo API klic
+								var oblika = $("#oblika").val();
+								var profesor = $("#profesor").val();
+								var fakulteta = $("#fakulteta").val();
+								var predmet = $("#predmet").val();
+								// sestavimo API klic
 								var apiCall = "api.php/search";
 								if (naslov != "") {
 									apiCall += "/naslov/" + naslov;
@@ -138,17 +157,29 @@ function normal(x) {
 								if (avtor != "") {
 									apiCall += "/avtor/" + avtor;
 								}
+								if (oblika != "") {
+									apiCall += "/oblika/" + oblika;
+								}
+								if (profesor != "") {
+									apiCall += "/profesor/" + profesor;
+								}
+								if (fakulteta != "") {
+									apiCall += "/fakulteta/" + fakulteta;
+								}
+								if (predmet != "") {
+									apiCall += "/predmet/" + predmet;
+								}
 								console.log(apiCall);
 								// ajax call
-								$.ajax({url: apiCall, success: function(result){
+								$.ajax({url: apiCall, success: function(result) {
 									var res = result;
-									console.log(res);
+									//console.log(res);
 									var json = JSON.parse(result);
 									console.log(json);
 									// za vsako knjigo izpišemo podatke
 									for (var i = 0; i < json.books.length; i++) {
 										var k = json["books"][i]; 
-										console.log(k);
+										//console.log(k);
 										var data = document.createElement("p");
 										data.innerHTML = "Naslov: " + k["ImeGradiva"] + " | Avtor: " + k["ImeUporabnika"] + " | CENA: " + k["Cena"] + "€";
 										$("#results").append(data);
