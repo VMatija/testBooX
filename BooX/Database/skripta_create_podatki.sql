@@ -95,29 +95,29 @@ INSERT INTO profesor (ProfesorID, ImeProfesorja, PriimekProfesorja) VALUES (4, "
 INSERT INTO profesor (ProfesorID, ImeProfesorja, PriimekProfesorja) VALUES (5, "Aljaž", "Zrnec");
 
 -- Povezava GRADIVO x PROFESOR
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (1, 1);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (5, 2);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (9, 3);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (13, 4);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (17, 5);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (1, 2);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (5, 3);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (9, 4);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (13, 5);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (17, 1);
 
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (2, 1);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (6, 2);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (10, 3);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (14, 4);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (18, 5);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (2, 2);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (6, 3);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (10, 4);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (14, 5);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (18, 1);
 
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (3, 1);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (7, 2);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (11, 3);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (15, 4);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (19, 5);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (3, 2);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (7, 3);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (11, 4);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (15, 5);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (19, 1);
 
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (4, 1);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (8, 2);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (12, 3);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (16, 4);
-INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (20, 5);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (4, 2);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (8, 3);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (12, 4);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (16, 5);
+INSERT INTO profesorzahteva (GradivoID, ProfesorID) VALUES (20, 1);
 
 -- Predmeti
 INSERT INTO predmet (PredmetID, ImePredmeta) VALUES (1, "TPO");
@@ -127,26 +127,26 @@ INSERT INTO predmet (PredmetID, ImePredmeta) VALUES (4, "RG");
 INSERT INTO predmet (PredmetID, ImePredmeta) VALUES (5, "PB2");
 
 -- Povezava GRADIVO x PREDMET
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (1, 1);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (5, 2);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (9, 3);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (13, 4);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (17, 5);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (1, 4);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (5, 5);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (9, 1);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (13, 2);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (17, 3);
 
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (2, 1);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (6, 2);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (10, 3);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (14, 4);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (18, 5);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (2, 4);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (6, 5);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (10, 1);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (14, 2);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (18, 3);
 
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (3, 1);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (7, 2);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (11, 3);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (15, 4);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (19, 5);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (3, 4);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (7, 5);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (11, 1);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (15, 2);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (19, 3);
 
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (4, 1);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (8, 2);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (12, 3);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (16, 4);
-INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (20, 5);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (4, 4);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (8, 5);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (12, 1);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (16, 2);
+INSERT INTO pripredmetu (GradivoID, PredmetID) VALUES (20, 3);

@@ -211,7 +211,7 @@
 					break;
 				case "profesor":
 					$select = $select . ", ProfesorID, ImeProfesorja, PriimekProfesorja";
-					$join = $join . " NATURAL JOIN ProfesorZahteva";
+					$join = $join . " NATURAL JOIN ProfesorZahteva NATURAL JOIN Profesor";
 					$where = $where . " ProfesorID = ? AND";
 					array_push($fill, $value);
 					break;
