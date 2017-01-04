@@ -91,9 +91,9 @@ function normal(x) {
 					<div>
 						<form id="searchForm">
 							<!-- Naslov -->
-							<input type="text" placeholder="Naslov" name="naslov" id="naslov" />
+							<input type="text" placeholder="Title" name="naslov" id="naslov" />
 							<!-- Avtor -->
-							<input type="text" placeholder="Ime in priimek avtorja" name="avtor" id="avtor" />
+							<input type="text" placeholder="Name of the Author" name="avtor" id="avtor" />
 							<!-- Cena -->
 							<select name="cena" id="cena">
 								<option value="5">5€</option>
@@ -109,11 +109,11 @@ function normal(x) {
 							</select>
 							<!-- Oblika -->
 							<select name="oblika" id="oblika">
-								<option value="">Izberi obliko...</option>
-								<option value="1">Knjiga/fizični izvod</option>
-								<option value="2">Knjiga/PDF</option>
-								<option value="3">Zapiski/fizični izvod</option>
-								<option value="4">Zapiski/PDF</option>
+								<option value="">Choose form</option>
+								<option value="1">Book</option>
+								<option value="2">Book/PDF</option>
+								<option value="3">Notes</option>
+								<option value="4">Notes/PDF</option>
 							</select>
 							<!-- TODO pridobi vrednosti iz baze -->
 							<script>
@@ -135,18 +135,18 @@ function normal(x) {
 							</script>
 							<!-- Profesor -->
 							<select name="profesor" id="profesor">
-								<option value="">Izberi profesorja...</option>
+								<option value="">Choose professor</option>
 							</select>
 							<!-- Fakulteta -->
 							<select name="fakulteta" id="fakulteta">
-								<option value="">Izberi fakulteto...</option>
+								<option value="">Choose university</option>
 							</select>
 							<!-- Predmet -->
 							<select name="predmet" id="predmet">
-								<option value="">Izberi predmet...</option>
+								<option value="">Choose course</option>
 							</select>
 							<!-- ISČI -->
-							<button type="submit">Išči</button>
+							<button type="submit">Search</button>
 						</form>
 					</div>
 
@@ -203,7 +203,7 @@ function normal(x) {
 									for (var i = 0; i < json.books.length; i++) {
 										var k = json["books"][i]; 
 										//console.log(k);
-										var data = document.createElement("p");
+										var data = document.createElement("h4");
 										data.innerHTML = "Naslov: " + k["ImeGradiva"] + " | Avtor: " + k["ImeUporabnika"] + " | CENA: " + k["Cena"] + "€";
 										$("#results").append(data);
 									}
@@ -216,7 +216,7 @@ function normal(x) {
 					<!-- end -->
 
 					<img onclick="window.location.replace('snapSell.html')" onmouseover="hover(this)" onmouseout="normal(this)" src="images/ss.png" alt="" class="ss" style=" cursor: pointer; height: 300px; width: 310px; float: left; padding-top: 50px;">
-                    <img onclick="window.location.replace('index.html')" onmouseover="hover(this)" onmouseout="normal(this)"src="images/sb.png" alt="" class="sb" style=" cursor: pointer; height: 300px; width: 310px; float: right; padding-top: 50px;">
+                    <img onmouseover="hover(this)" onmouseout="normal(this)"src="images/sb.png" alt="" class="sb" style="height: 300px; width: 310px; float: right; padding-top: 50px;">
                     <img onclick="window.location.replace('login.html')" onmouseover="hover(this)" onmouseout="normal(this)"src="images/login.png" alt="" class="login" style=" cursor: pointer; height: 200px; width: 200x; padding-top: 10px;">
                     <img onclick="window.location.replace('register.html')" onmouseover="hover(this)" onmouseout="normal(this)"src="images/register.png"  alt="" class="register" style=" cursor: pointer; height: 200px; width: 200x; padding-top: 10px;">
                     

@@ -5,6 +5,24 @@ body {
 	position: relative;
 	width: auto;
 }
+
+#results{
+	max-height: 350px;
+	overflow: auto;
+	text-align: center;
+	color: white;
+	font-family: "Century Gothic";
+	position: relative;
+}
+
+#results h4 {
+	border: 1px solid white;
+	margin: 10px 0 15px 0;
+	padding: 7px 0 7px 0;
+	background: url(../images/results.png) repeat;
+}
+
+
 body #page {
 	margin: 0;
 	overflow: hidden;
