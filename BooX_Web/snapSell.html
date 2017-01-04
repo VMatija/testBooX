@@ -42,6 +42,7 @@
     <div id="body" class="contact">
         <div>
             <h1>Snap & Sell</h1>
+			<button id="myBtn">Ročni vnos</button>
 
             <div class="image-upload">
                 <label for="takePictureField">
@@ -58,6 +59,44 @@
         </div>
     </div>
 
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Snap &amp; Sell</h2>
+    </div>
+	<form class="modalform">
+		<div  style="width: 100%;">
+		<select name="Oblika" id="Oblika">
+								<option value="">Izberi obliko...</option>
+								<option value="1">Knjiga/fizični izvod</option>
+								<option value="2">Knjiga/PDF</option>
+		</select></br>
+		<input type="text" name="Author" id="Author" value="Author"
+			onblur="this.value=!this.value?'Author':this.value;" 
+			onfocus="this.select()"></br>
+		<input type="text" name="Title" id="Title" value="Title"
+			onblur="this.value=!this.value?'Title':this.value;" 
+			onfocus="this.select()" ></br>
+		<input type="number" name="Price" id="Price" value="Price"
+			onblur="this.value=!this.value?'Price':this.value;" 
+			onfocus="this.select()"></br>	
+		<input type="checkbox" name="New" id="New" value="1">
+		<label for="New">New?</label><br>
+		<input type="text" name="Email" id="Email" value="Email"
+			onblur="this.value=!this.value?'Email':this.value;" 
+			onfocus="this.select()"></br>
+		<button type="button" id="dodajKnjigo">Dodaj knjigo!</button>
+		</div>
+		</form>
+  </div>
+
+</div>
+
     <div id="footer">
         <div>
             <div class="connect">
@@ -70,7 +109,58 @@
     </div>
 </div>
 
+
+
 <script>
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+var dodajKnjigo = document.getElementById('dodajKnjigo');
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+dodajKnjigo.onclick = function() {
+	// insert_Book (insert/{OblikaID}/{Mail}/{ImeGradiva}/{Cena}/{Novo})  //
+	var oblika = $("#Oblika").val();
+	var mail = $("#Email").val();
+	var imeGradiva = $("#Author").val() + ' ' + $("#Title").val();
+	var cena = $("#Price").val();
+	var novo = $('#New:checked').val();
+	if (novo == null){ novo = "0";
+	}
+	//alert(oblika+mail+imeGradiva+cena+novo);
+	var apiCall = "api.php/insert";
+	if (oblika != "") {
+		apiCall += "/" +oblika;
+		}
+	if (mail != "") {
+		apiCall += "/" + mail;
+		}
+	if (imeGradiva != "") {
+		apiCall += "/" + imeGradiva;
+		}
+	if (cena != "") {
+		apiCall += "/" + cena;
+		}
+	if (novo != "") {
+		apiCall += "/" + novo;
+		}
+	alert(apiCall);
+	$.ajax({url: apiCall, success: function(result) {
+									var res = result;
+									//console.log(res);
+									var json = JSON.parse(result);
+									console.log(json);}});
+	
+}
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
     var elem = document.getElementById("myBar");
 
     var maxW = 1024;
@@ -109,8 +199,17 @@
                             }
                         })
                         .then(function (result) {
+							modal.style.display = "block";
                             //TODO: DO SOMETHING WITH STRING result.text
-                            alert(result.text);
+                            //alert(result.text);
+							var toParse = result.text;
+							var newstr = toParse.replace(/[^A-Za-z0-9 \n]/g,'');
+							newstr = newstr.match(/([A-z])\w+/g,'');
+							console.log(newstr.toString());
+							document.getElementById("Author").value = newstr[0];
+							document.getElementById("Title").value = newstr[1]+' '+newstr[2]+ ' '+newstr[3]+' '+newstr[4]+ ' '+newstr[5]+ ' ' +newstr[6] ;
+							
+							
                         });
             };
         };
