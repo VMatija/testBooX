@@ -116,12 +116,35 @@ function normal(x) {
 								<option value="4">Zapiski/PDF</option>
 							</select>
 							<!-- TODO pridobi vrednosti iz baze -->
+							<script>
+								$(document).ready(function() {
+									// AJAX klici za sifrante
+									// Profesor
+									$.ajax({url: "./php/sifrant.php?table=profesor", success: function(result) {
+										$("#profesor").append(result);
+									}});
+									// Fakulteta
+									$.ajax({url: "./php/sifrant.php?table=fakulteta", success: function(result) {
+										$("#fakulteta").append(result);
+									}});
+									// Predmet
+									$.ajax({url: "./php/sifrant.php?table=predmet", success: function(result) {
+										$("#predmet").append(result);
+									}});
+								});
+							</script>
 							<!-- Profesor -->
-							<input type="text" placeholder="Profesor" name="profesor" id="profesor" />
+							<select name="profesor" id="profesor">
+								<option value="">Izberi profesorja...</option>
+							</select>
 							<!-- Fakulteta -->
-							<input type="text" placeholder="Fakulteta" name="fakulteta" id="fakulteta" />
+							<select name="fakulteta" id="fakulteta">
+								<option value="">Izberi fakulteto...</option>
+							</select>
 							<!-- Predmet -->
-							<input type="text" placeholder="Predmet" name="predmet" id="predmet" />
+							<select name="predmet" id="predmet">
+								<option value="">Izberi predmet...</option>
+							</select>
 							<!-- ISČI -->
 							<button type="submit">Išči</button>
 						</form>
