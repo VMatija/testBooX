@@ -22,6 +22,33 @@ body {
 	background: url(../images/results.png) repeat;
 }
 
+.button {
+    background-color: orange; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	margin-top: 50px;
+	margin-left: 40%;
+	margin-bottom: 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: #555555;
+    color: white;
+}
+
+.button1:hover {
+
+    background-color: orange;
+    color: white;
+}
+
 
 body #page {
 	margin: 0;
@@ -116,12 +143,11 @@ img {
 
 
 #body {
-	background-image: url(../images/books.jpg), url(../images/infinite_table.jpg);
 	background-position: center top, center;
 	background-repeat: no-repeat, repeat-y;
 	background-size: contain, contain;
-
-	/*background: url(../images/books.jpg) no-repeat center top;*/
+	
+	background: url(../images/books.jpg) no-repeat center top;
 	border-top: 2px solid #252525;
 	margin: 0;
 	overflow: hidden;
@@ -463,7 +489,7 @@ img {
 
 #body.contact div img {
 	display: block;
-	margin: 70px auto 37px;
+	margin: 20px auto 37px;
 	padding: 0;
 	width: auto;
 }

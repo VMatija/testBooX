@@ -42,7 +42,7 @@
     <div id="body" class="contact">
         <div>
             <h1>Snap & Sell</h1>
-			<button id="myBtn">Ročni vnos</button>
+			<button class="button button1" id="myBtn">Manually insert</button>
 
             <div class="image-upload">
                 <label for="takePictureField">
@@ -72,9 +72,9 @@
 	<form class="modalform">
 		<div  style="width: 100%;">
 		<select name="Oblika" id="Oblika">
-								<option value="">Izberi obliko...</option>
-								<option value="1">Knjiga/fizični izvod</option>
-								<option value="2">Knjiga/PDF</option>
+								<option value="">Choose form</option>
+								<option value="1">Phisycal form</option>
+								<option value="2">PDF</option>
 		</select></br>
 		<input type="text" name="Author" id="Author" value="Author"
 			onblur="this.value=!this.value?'Author':this.value;" 
@@ -90,7 +90,7 @@
 		<input type="text" name="Email" id="Email" value="Email"
 			onblur="this.value=!this.value?'Email':this.value;" 
 			onfocus="this.select()"></br>
-		<button type="button" id="dodajKnjigo">Dodaj knjigo!</button>
+		<button type="button" id="dodajKnjigo">Add Book/Notes</button>
 		</div>
 		</form>
   </div>
