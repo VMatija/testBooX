@@ -7,7 +7,7 @@ body {
 }
 
 #results{
-	max-height: 350px;
+	/*max-height: 350px;*/
 	overflow: auto;
 	text-align: center;
 	color: white;
@@ -116,7 +116,12 @@ img {
 
 
 #body {
-	background: url(../images/books.jpg) no-repeat center top;
+	background-image: url(../images/books.jpg), url(../images/infinite_table.jpg);
+	background-position: center top, center;
+	background-repeat: no-repeat, repeat-y;
+	background-size: contain, contain;
+
+	/*background: url(../images/books.jpg) no-repeat center top;*/
 	border-top: 2px solid #252525;
 	margin: 0;
 	overflow: hidden;
