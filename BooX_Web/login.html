@@ -14,22 +14,63 @@
 </head>
 <body>
 	<script type="text/javascript">
+		var Mail;
+		var Password;
+		var CoockieID;
+		var CoockieUPO;
+		document.cookie ="id=; username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+		function prijavi_uporabnika() {
+			if(validate && checkPasswordMatch){
+				var apiCall = "api.php/login"+"/"+Mail+"/"+Password
+				$.ajax({url: apiCall, success: function(result) {
+						if(result){
+							document.cookie ="id=qwe; username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+							var res = result;
+							var json = JSON.parse(result);
+							CoockieID = json["id"];
+							CoockieUPO =json["ime"];
+							var now = new Date();
+							var time = now.getTime();
+							time += 3600 * 1000;
+							now.setTime(time);
+							console.log(CoockieUPO+" "+CoockieID);
+							document.cookie ="id="+CoockieID+";";
+							document.cookie ="username="+CoockieUPO+";";
+							document.cookie ="expires="+now.toUTCString+";";
+							var xx = document.cookie;
+							console.log(xx);
+							link="http://jaka.azurewebsites.net/BooX_Web/index.html";
+							//Gre na vstopno stran. Piškotek je nastavljen. Traja 1 uro
+							window.location.href = link;
+
+						}
+					}});
+			}
+			else{
+				$("#matching_pass").html("Your LOGIN was not successful!").css("color", "red");
+			}
+		 	
+		} 
+
 		function validateEmail(email) {
 		  	var rez = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		  	return rez.test(email);
 		}
 
 		function validatePassLength(value){
+			// Minimum 8 characters at least 1 Alphabet and 1 Number !!
 			var trr = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 		    return trr.test(value);
 		}
 
 		function validate() {
-			var enableButtonEmail = false;
+			enableButtonEmail = false;
 		    var email = document.getElementById("Email").value;
 		    if (validateEmail(email)) {
 		      	$("#validate_email").html("Your EMAIL is valid!").css("color", "green");
 		      	enableButtonEmail=true;
+		      	Mail=email;
 		    } 
 		    else {
 		      	$("#validate_email").html("Your EMAIL is not valid!").css("color", "red");
@@ -39,24 +80,11 @@
 
 		function checkPasswordMatch() {
 		    var password = $("#PasswordFirst").val();
-		    var confirmPassword = $("#PasswordRepeat").val();
-		    var enableButtonPass = false;
+		   	enableButtonPass = false;
 
 		    if(validatePassLength(password)){
-		    	if (validatePassLength(confirmPassword)){
-		    		var rez = hashing(password, confirmPassword);
-				    var hash1 = rez[0];
-				    var hash2 = rez[1];
-
-				    if (hash1 != hash2)
-				        $("#matching_pass").html("Passwords do not match!").css("color", "red");
-				    else
-				        $("#matching_pass").html("Passwords match!").css("color", "green");
-				    	enableButtonPass=true;
-		    	}
-		    	else{
-		    		$("#matching_pass").html("Password does not meet requirements!").css("color", "red");
-		    	}
+		    	$("#matching_pass").html("Password do meet requirements!").css("color", "green");
+		    	Password=password;
 		    }
 		    else{
 		    	$("#matching_pass").html("Password does not meet requirements!").css("color", "red");
@@ -64,11 +92,6 @@
 		    return enableButtonPass;
 		}		
 
-		function hashing(v1,v2) {
-			var rez1 = md5(v1);
-			var rez2 = md5(v2);
-			return [rez1, rez2]
-		}
 	</script>
 	<div id="page">
 		<div id="header">
@@ -98,20 +121,24 @@
 			<div>
 				<h4>LOGIN TO YOUR BOOX ACCOUNT</h4>
 				<form>
-					<input type="text" 
-					name="Username" 
-					value="Username" 
-					onblur="this.value=!this.value?'Username':this.value;" 
+					<input type="text"
+					id="Email" 
+					name="Email" 
+					value="Enter email" 
+					onblur="validate()"
 					onfocus="this.select()" 
 					onclick="this.value='';">
+					<span id="validate_email"></span>
+
 					<input type="password" 
 					id="PasswordFirst" 
 					name="PasswordFirst" 
 					value="Password" 
-					onblur="this.value=!this.value?'Password':this.value;" 
+					onblur="checkPasswordMatch()" 
 					onfocus="this.select()" 
 					onclick="this.value='';">
-					<input type="button" value="Log in" id="submit" onclick="">
+					<span id="matching_pass"></span>
+					<input type="button" value="Log in" id="submit" onclick="prijavi_uporabnika()">
 				</form>
 			</div>
 		</div>
