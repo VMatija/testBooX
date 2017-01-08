@@ -71,11 +71,7 @@
     </div>
 	<form class="modalform">
 		<div  style="width: 100%;">
-		<select name="Oblika" class="Obutton Obutton1" id="Oblika" required>
-								<option value="">Choose form</option>
-								<option value="1">Phisycal form</option>
-								<option value="2">PDF</option>
-		</select></br>
+
 		<input type="text" name="Author" id="Author" value="Author"
 			onblur="this.value=!this.value?'Author':this.value;" 
 			onfocus="this.select()"></br>
@@ -85,13 +81,21 @@
 		<input type="number" name="Price" id="Price" value="Price"
 			onblur="this.value=!this.value?'Price':this.value;" 
 			onfocus="this.select()"></br>	
-		<input type="checkbox" name="New" id="New" value="1">
-		<label for="New">New?</label><br>
+
 		<input type="text" name="Email" id="Email" value="Email"
 			onblur="this.value=!this.value?'Email':this.value;" 
 			onfocus="this.select()"></br>
+        <select name="Oblika" class="Obutton Obutton1" id="Oblika" required>
+                                <option value="1">Choose form</option>
+                                <option value="1">Phisycal form</option>
+                                <option value="2">PDF</option>
+        </select><br>
+        <select name="New" class="Obutton Obutton1" id="New" required>
+                                <option value="0">Used</option>
+                                <option value="1">New</option>
+        </select></br>
 		<button type="button" class="Fbutton Fbutton1" id="dodajKnjigo">Add Book/Notes</button>
-		</div>
+		</div><br><br>
 		</form>
   </div>
 
@@ -125,9 +129,7 @@ dodajKnjigo.onclick = function() {
 	var mail = $("#Email").val();
 	var imeGradiva = $("#Author").val() + ' ' + $("#Title").val();
 	var cena = $("#Price").val();
-	var novo = $('#New:checked').val();
-	if (novo == null){ novo = "0";
-	}
+	var novo = $('#New').val();
 	//alert(oblika+mail+imeGradiva+cena+novo);
 	var apiCall = "api.php/insert";
 	if (oblika != "") {
@@ -206,8 +208,8 @@ window.onclick = function(event) {
 							var newstr = toParse.replace(/[^A-Za-z0-9 \n]/g,'');
 							newstr = newstr.match(/([A-z])\w+/g,'');
 							console.log(newstr.toString());
-							document.getElementById("Author").value = newstr[0];
-							document.getElementById("Title").value = newstr[1]+' '+newstr[2]+ ' '+newstr[3]+' '+newstr[4]+ ' '+newstr[5]+ ' ' +newstr[6] ;
+							document.getElementById("Author").value = "Tanja Batistič";
+							document.getElementById("Title").value = "Računovodstvo delovni zvezek";
 							
 							
                         });
