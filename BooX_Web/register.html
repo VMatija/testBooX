@@ -10,16 +10,46 @@
 	<title>BooX | Login</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="css/mobile.css">
-	<script src="js/mobile.js" type="text/javascript"></script>
+	<!--<script src="js/mobile.js" type="text/javascript"></script>-->
 </head>
 <body>
 	<script type="text/javascript">
+		var Upo;
+		var Mail;
+		var Password;
+
+		function register_uporabnika() {
+			
+			if(validate() && checkPasswordMatch()){
+				var apiCall = "api.php/register/"+Mail+"/"+Upo+"/"+Password;
+				$.ajax({url: apiCall, success: function(result) {
+					if(result){
+						$("#matching_pass").html("Your registeration was successful!").css("color", "greeen");
+						link="http://jaka.azurewebsites.net/BooX_Web/login.html";
+							//Gre na vstopno stran. Piškotek je nastavljen. Traja 1 uro
+							window.location.href = link;
+					}
+					else{
+						$("#matching_pass").html("Your registeration was not successful!").css("color", "red");
+					}
+					}});
+			}
+			else{
+				window.alert("qweqwe");
+				$("#matching_pass").html("Your register input does not meet requirements!").css("color", "red");
+			}
+		 	
+		} 
+
+
+
 		function validateEmail(email) {
 		  	var rez = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		  	return rez.test(email);
 		}
 
 		function validatePassLength(value){
+			// Minimum 8 characters at least 1 Alphabet and 1 Number !!
 			var trr = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 		    return trr.test(value);
 		}
@@ -30,6 +60,7 @@
 		    if (validateEmail(email)) {
 		      	$("#validate_email").html("Your EMAIL is valid!").css("color", "green");
 		      	enableButtonEmail=true;
+		      	Mail=email;
 		    } 
 		    else {
 		      	$("#validate_email").html("Your EMAIL is not valid!").css("color", "red");
@@ -53,6 +84,8 @@
 				    else
 				        $("#matching_pass").html("Passwords match!").css("color", "green");
 				    	enableButtonPass=true;
+				    	Password=hash1;
+				    	Upo=$("#Username").val()
 		    	}
 		    	else{
 		    		$("#matching_pass").html("Password does not meet requirements!").css("color", "red");
@@ -65,9 +98,7 @@
 		}		
 
 		function hashing(v1,v2) {
-			var rez1 = md5(v1);
-			var rez2 = md5(v2);
-			return [rez1, rez2]
+			return [v1, v2]
 		}
 	</script>
 	<div id="page">
@@ -98,14 +129,14 @@
 			<div>
 				<h4>JOIN BOOX NOW</h4>
 				<form>
-					<input type="text" name="Username" value="Username" onblur="this.value=!this.value?'Username':this.value;" onfocus="this.select()" onclick="this.value='';">
+					<input type="text" value="Username" id="Username" onblur="this.value=!this.value?'Username':this.value;" onfocus="this.select()" onclick="this.value='';">
 					<input type="text" id="Email" autocomplete="off" name="Email" value="Email" onblur="validate()" onfocus="this.select()" onclick="this.value='';">
 					<span id="validate_email"></span>
 					<input type="password" id="PasswordFirst" name="PasswordFirst" value="Password" onblur="this.value=!this.value?'':this.value;" onfocus="this.select()" onclick="this.value='';">
 					<input type="password" id="PasswordRepeat" name="PasswordRepeat" value="Repeate password" onfocus="this.select()" onclick="this.value='';" onblur="checkPasswordMatch()">
 					<span id="matching_pass"></span>
 					<!---<textarea name="meassage" cols="50" rows="7">Message</textarea>-->
-					<input type="button" value="Sign in" id="submit" onclick="">
+					<input type="button" value="Sign in" id="submit" onclick="register_uporabnika()">
 				</form>
 			</div>
 		</div>
