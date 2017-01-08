@@ -151,7 +151,8 @@
 	
 			"status": 0,
 			"description": OK,
-
+			"id": {UporabnikID},
+			"ime": {ImeUporabnika}
 		}
 
 	*/
@@ -396,7 +397,8 @@
 		$pdo = getBasicConnection();
 		$statement = $pdo->prepare("SELECT * FROM uporabnik WHERE Email = :mail AND HashGesla = :hash");
         $statement->bindParam(":mail", $email);
-        $statement->bindParam(":hash", sha1($geslo));
+        $sha1 = sha1($geslo);
+        $statement->bindParam(":hash", $sha1);
         $statement->execute();
 
 
@@ -405,6 +407,9 @@
         if (sizeof($res) == 1){
 		    // Sestava odgovora geslo je pravilno
 			$response = statusFactory(0, "OK");
+			// Odgovoru pripnemo id in ime uporabnika za cookie
+			$response["id"] = $res[0]["Email"];
+			$response["ime"] = $res[0]["ImeUporabnika"];
 			$json = json_encode($response, JSON_PRETTY_PRINT);
 			echo($json);
         }else{
