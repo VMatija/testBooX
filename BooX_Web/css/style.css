@@ -1,4 +1,21 @@
 
+/*testing*/
+
+input {
+    border-radius: 10px;
+}
+
+select{
+    border-radius: 10px;
+
+}
+
+input[type=text]{
+	color: black;
+}
+
+/*testing*/
+
 body {
 	margin: 0;
 	padding: 0;
