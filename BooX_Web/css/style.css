@@ -53,6 +53,7 @@ body {
 	margin-bottom: 10px;
     transition-duration: 0.4s;
     cursor: pointer;
+	border-radius: 10px;
 }
 
 .button1 {
@@ -61,8 +62,79 @@ body {
 }
 
 .button1:hover {
-
     background-color: orange;
+    color: white;
+}
+
+.Fbutton {
+    background-color: orange; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	margin-top: 50px;
+	margin-bottom: 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+	border-radius: 10px;
+}
+
+.Fbutton1 {
+    background-color: #555555;
+    color: white;
+}
+
+.Fbutton1:hover {
+    background-color: orange;
+    color: white;
+}
+
+
+.Obutton {
+    background-color: orange; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	margin-top: 50px;
+	margin-bottom: 20px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.Obutton1 {
+    background-color: #555555;
+    color: white;
+}
+
+
+.btnS {
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+	border-radius: 10px;
+}
+
+.btnS1 {
+    background-color:#060;
+    color: white;
+}
+
+.btnS1:hover {
+
+    background-color: gray;
     color: white;
 }
 
