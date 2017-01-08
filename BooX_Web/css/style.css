@@ -23,20 +23,21 @@ body {
 	width: auto;
 }
 
-#results{
-	/*max-height: 350px;*/
-	overflow: auto;
+.results{
+	max-height: 850px;
+	overflow: scroll;
 	text-align: center;
 	color: white;
 	font-family: "Century Gothic";
 	position: relative;
 }
 
-#results h4 {
+.results h4 {
 	border: 1px solid white;
 	margin: 10px 0 15px 0;
 	padding: 7px 0 7px 0;
 	background: url(../images/results.png) repeat;
+	width: 100%;
 }
 
 .button {
@@ -48,7 +49,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	margin-top: 50px;
+	margin-top: 10px;
 	margin-left: 40%;
 	margin-bottom: 10px;
     transition-duration: 0.4s;
@@ -75,7 +76,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	margin-top: 50px;
+	margin-top: 10px;
 	margin-bottom: 10px;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -102,7 +103,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	margin-top: 50px;
+	margin-top: 10px;
 	margin-bottom: 20px;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -250,7 +251,7 @@ img {
 	margin: 0;
 	max-width: none;
 	padding: 0 0 54px;
-	width: 100%;
+
 }
 
 #body.home div.header div {
