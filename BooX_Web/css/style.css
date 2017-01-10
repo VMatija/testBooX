@@ -23,7 +23,16 @@ body {
 	width: auto;
 }
 
+h4 {
+	border-bottom: 1px solid orange;
+	margin: 20px 0 15px 4%;
+	padding: 10px 0 10px 0;
+	width: 90%;
+}
 
+h4:hover {
+	background: url(../images/results.png) repeat;
+}
 
 .button {
     background-color: orange; /* Green */
