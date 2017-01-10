@@ -25,7 +25,7 @@
 				$.ajax({url: apiCall, success: function(result) {
 					if(result){
 						$("#matching_pass").html("Your registeration was successful!").css("color", "greeen");
-						link="http://jaka.azurewebsites.net/BooX_Web/login.html";
+						link="http://matija.azurewebsites.net/BooX_Web/login.html";
 							//Gre na vstopno stran. Piškotek je nastavljen. Traja 1 uro
 							window.location.href = link;
 					}
@@ -127,7 +127,7 @@
 		</div>
 		<div id="body" class="contact">
 			<div>
-				<h4>JOIN BOOX NOW</h4>
+								<h3 style="font-size: 25px; font-family: 'Century Gothic';">JOIN BOOX NOW</h3>
 				<form>
 					<input type="text" value="Username" id="Username" onblur="this.value=!this.value?'Username':this.value;" onfocus="this.select()" onclick="this.value='';">
 					<input type="text" id="Email" autocomplete="off" name="Email" value="Email" onblur="validate()" onfocus="this.select()" onclick="this.value='';">
