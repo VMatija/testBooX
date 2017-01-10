@@ -208,6 +208,9 @@ window.onclick = function(event) {
 							var newstr = toParse.replace(/[^A-Za-z0-9 \n]/g,'');
 							newstr = newstr.match(/([A-z])\w+/g,'');
 							console.log(newstr.toString());
+							document.getElementById("Author").value = newstr[0];
+							document.getElementById("Title").value = newstr[1]+' '+newstr[2]+ ' '+newstr[3]+' '+newstr[4]+ ' '+newstr[5]+ ' ' +newstr[6] ;
+							
 							
 							
                         });
