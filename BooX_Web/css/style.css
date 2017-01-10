@@ -23,22 +23,7 @@ body {
 	width: auto;
 }
 
-.results{
-	max-height: 850px;
-	overflow: scroll;
-	text-align: center;
-	color: white;
-	font-family: "Century Gothic";
-	position: relative;
-}
 
-.results h4 {
-	border: 1px solid white;
-	margin: 10px 0 15px 0;
-	padding: 7px 0 7px 0;
-	background: url(../images/results.png) repeat;
-	width: 100%;
-}
 
 .button {
     background-color: orange; /* Green */
@@ -844,13 +829,6 @@ img {
     animation-duration: 0.4s
 }
 
-.modal-content h4 {
-	border: 1px solid white;
-	margin: 10px 0 15px 0;
-	padding: 7px 0 7px 0;
-	background: url(../images/results.png) repeat;
-	width: 100%;
-}
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
