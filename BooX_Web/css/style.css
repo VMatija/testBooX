@@ -822,9 +822,9 @@ img {
 	width: 420px;
 }
 .modalform input[type=checkbox] {
-		margin: 0 0 0px;
-		padding: 0 0px;
-		width: 50px;
+	margin: 0 0 0px;
+	padding: 0 0px;
+	width: 50px;
 }
 
 .modal-content {
