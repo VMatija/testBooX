@@ -214,7 +214,7 @@ window.onclick = function(event) {
 						$(document).ready(function() {
 							$("#searchForm").submit(function() {
 								// pocistimo morebitne prejsnje rezultate
-								$("#results").empty();
+								//$("#results").empty();   odkomentiraj ko bo zares
 								// dobimo input
 								var naslov = $("#naslov").val();
 								var avtor = $("#avtor").val();
@@ -256,16 +256,6 @@ window.onclick = function(event) {
 									// za vsako knjigo izpišemo podatke
 									var form = document.getElementById('results');
 									
-									
-									// za debug
-									var data = document.createElement("h4");
-									
-									data.innerHTML = "dfghjklgfhjkldgfhjklgfhjkl";
-										form.append(data);
-										form.append(data);
-										form.append(data);
-										form.append(data);
-								   //konec debuga
 									
 									for (var i = 0; i < json.books.length; i++) {
 										var k = json["books"][i]; 
