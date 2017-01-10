@@ -70,9 +70,22 @@ function normal(x) {
       <h2>Search results</h2>
     </div>
 		<div id="results" style="width: 100%;">
-
+        
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
+        <h4> oaspdpoaskdopsakopdkapsdkposakdpoas</h4>
 		
-		</div><br><br>
+		</div>
   </div>
 
 </div>
@@ -243,13 +256,22 @@ window.onclick = function(event) {
 									// za vsako knjigo izpišemo podatke
 									var form = document.getElementById('results');
 									
+									
+									// za debug
+									var data = document.createElement("h4");
+									
+									data.innerHTML = "dfghjklgfhjkldgfhjklgfhjkl";
+										form.append(data);
+										form.append(data);
+										form.append(data);
+										form.append(data);
+								   //konec debuga
+									
 									for (var i = 0; i < json.books.length; i++) {
 										var k = json["books"][i]; 
 										//console.log(k);
 										var data = document.createElement("h4");
 										data.innerHTML = "TITLE: " + k["ImeGradiva"] + " | UPLOADER: " + k["ImeUporabnika"] + " | PRICE: " + k["Cena"] + "€" + " | CONTACT: " + k["Email"];
-										console.log(data);
-										form.append(data);
 									}
 								}});
 								return false;
