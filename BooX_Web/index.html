@@ -9,9 +9,6 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<script src="js/mobile.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/load-image.all.min.js"></script>
-    <script type="text/javascript" src="node_modules/tesseract.js/dist/tesseract.js"></script>
-    <script type="text/javascript" src="js/require.js"></script>
 </head>
 
 <script>
@@ -60,22 +57,6 @@ function normal(x) {
 
 
 <body>
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content naredi, da bo prikazano tako kot je treba + scroll-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>Search results</h2>
-    </div>
-		<div id="results" style="width: 100%; color: white; font-family: 'Century Gothic'; min-height: 150px; max-height: 600px; overflow-y: auto; text-align:center;">
-        
-		
-		</div>
-  </div>
-
-</div>
 	<div id="page">
 		<div id="header">
 			<div id="navigation">
@@ -165,43 +146,21 @@ function normal(x) {
 								<option value="">Choose course</option>
 							</select>
 							<!-- ISČI -->
-							<button class="btnS btnS1" id="isk" type="submit">Search</button>
+							<button class="btnS btnS1" type="submit">Search</button>
 						</form>
 					</div>
 
 					<!-- div za rezultate -->
-<!--					<div class="results" id="results">
+					<div class="results" id="results">
 
-					</div>-->
-                    
-
-                    
-                    
-
-<script>
-var modal = document.getElementById('myModal');
-var isk = document.getElementById("isk");
-var span = document.getElementsByClassName("close")[0];
-isk.onclick = function() {
-   modal.style.display = "block";
-}             
-		
-span.onclick = function() {
-    modal.style.display = "none";
-}
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}       
-</script>
+					</div>
 
 					<!-- AJAX poizvedba na bazo -->
 					<script type="text/javascript">
 						$(document).ready(function() {
 							$("#searchForm").submit(function() {
 								// pocistimo morebitne prejsnje rezultate
-							    $("#results").empty();
+								$("#results").empty();
 								// dobimo input
 								var naslov = $("#naslov").val();
 								var avtor = $("#avtor").val();
@@ -241,14 +200,12 @@ window.onclick = function(event) {
 									var json = JSON.parse(result);
 									console.log(json);
 									// za vsako knjigo izpišemo podatke
-									var form = document.getElementById('results');
-									
-									
 									for (var i = 0; i < json.books.length; i++) {
 										var k = json["books"][i]; 
 										//console.log(k);
 										var data = document.createElement("h4");
 										data.innerHTML = "TITLE: " + k["ImeGradiva"] + " | UPLOADER: " + k["ImeUporabnika"] + " | PRICE: " + k["Cena"] + "€" + " | CONTACT: " + k["Email"];
+										$("#results").append(data);
 									}
 								}});
 								return false;
