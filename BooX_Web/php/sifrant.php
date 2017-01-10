@@ -1,5 +1,5 @@
 <?php
-	include "../../security.php";
+	include "../security.php";
 
 	function getBasicConnection() {
 		global $user, $pass;
