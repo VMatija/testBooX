@@ -844,6 +844,14 @@ img {
     animation-duration: 0.4s
 }
 
+.modal-content h4 {
+	border: 1px solid white;
+	margin: 10px 0 15px 0;
+	padding: 7px 0 7px 0;
+	background: url(../images/results.png) repeat;
+	width: 100%;
+}
+
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
@@ -880,13 +888,7 @@ img {
     color: #f7931d;
 }
 
-.modal-header h4 {
-	border: 1px solid white;
-	margin: 10px 0 15px 0;
-	padding: 7px 0 7px 0;
-	background: url(../images/results.png) repeat;
-	width: 100%;
-}
+
 
 
 .modal-body {padding: 2px 16px;}
