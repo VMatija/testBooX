@@ -147,7 +147,7 @@ dodajKnjigo.onclick = function() {
 	if (novo != "") {
 		apiCall += "/" + novo;
 		}
-	alert(apiCall);
+	//alert(apiCall);
 	$.ajax({url: apiCall, success: function(result) {
 									var res = result;
 									//console.log(res);
