@@ -40,7 +40,7 @@
 							document.cookie ="expires="+now.toUTCString+";";
 							var xx = document.cookie;
 							console.log(xx);
-							link="http://matija.azurewebsites.net/BooX_Web/index.html";
+							link="http://boox.azurewebsites.net/index.html";
 							//Gre na vstopno stran. Piškotek je nastavljen. Traja 1 uro
 							window.location.href = link;
 
@@ -68,12 +68,12 @@
 			enableButtonEmail = false;
 		    var email = document.getElementById("Email").value;
 		    if (validateEmail(email)) {
-		      	$("#validate_email").html("Your EMAIL is valid!").css("color", "green");
+		      	$("#validate_email").html("Your EMAIL is valid!").css("color", "#090").css('font-family', "Century Gothic").css('font-size', '12');
 		      	enableButtonEmail=true;
 		      	Mail=email;
 		    } 
 		    else {
-		      	$("#validate_email").html("Your EMAIL is not valid!").css("color", "red");
+		      	$("#validate_email").html("Your EMAIL is not valid!").css("color", "#f7931d").css('font-family', "Century Gothic").css('font-size', '12');
 		    }
 		  return enableButtonEmail;
 		}
@@ -83,11 +83,11 @@
 		   	enableButtonPass = false;
 
 		    if(validatePassLength(password)){
-		    	$("#matching_pass").html("Password do meet requirements!").css("color", "green");
+		    	$("#matching_pass").html("Password OK!").css("color", "#090").css('font-family', "Century Gothic").css('font-size', '12');
 		    	Password=password;
 		    }
 		    else{
-		    	$("#matching_pass").html("Password does not meet requirements!").css("color", "red");
+		    	$("#matching_pass").html("Password does not meet requirements!").css("color", "#f7931d").css('font-family', "Century Gothic").css('font-size', '12');
 		    }
 		    return enableButtonPass;
 		}		
@@ -119,8 +119,9 @@
 		</div>
 		<div id="body" class="contact">
 			<div>
-				<h3 style="font-size: 25px; font-family: 'Century Gothic';">LOGIN TO YOUR BOOX ACCOUNT</h3>
+								<h3 style="font-size: 25px; font-family: 'Century Gothic';">LOGIN TO YOUR BOOX ACCOUNT</h3>
 				<form>
+                    <span id="validate_email"></span>
 					<input type="text"
 					id="Email" 
 					name="Email" 
@@ -128,7 +129,7 @@
 					onblur="validate()"
 					onfocus="this.select()" 
 					onclick="this.value='';">
-					<span id="validate_email"></span>
+					
 
 					<input type="password" 
 					id="PasswordFirst" 
@@ -138,7 +139,7 @@
 					onfocus="this.select()" 
 					onclick="this.value='';">
 					<span id="matching_pass"></span>
-					<input type="button" value="Log in" id="submit" onclick="prijavi_uporabnika()">
+					<input type="button" value="Log in" id="submit" onclick="prijavi_uporabnika()"  style="margin-top: 25px";>
 				</form>
 			</div>
 		</div>

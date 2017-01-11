@@ -78,6 +78,27 @@ function normal(x) {
 </div>
 	<div id="page">
 		<div id="header">
+        <button id="odjava" onClick="odjava()"> Logout </button>  <span id="guest"> Greetings guest!</span> 
+        <script>
+		function odjava() {
+			document.cookie ="id=; username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			document.getElementById('guest').innerHTML = "Greetings Guest!";
+			link="http://boox.azurewebsites.net/index.html";
+			window.location.href = link;
+		}
+		
+		$(document).ready(function() {
+			if(document.cookie("username") != "") {
+				document.getElementById('guest').innerHTML = "Greetings" + document.cookie("username");
+			}
+			
+			if(document.getElementById('guest').innerHTML == "Greetings Guest!") {
+				document.getElementById('odjava').css('visibility', 'hidden');
+			}
+			
+		}
+        
+        </script>
 			<div id="navigation">
 				<span id="mobile-navigation">&nbsp;</span>
 				
@@ -98,7 +119,10 @@ function normal(x) {
 						<a href="team.html">Team</a>
 					</li>
 				</ul>
+                
+                
 			</div>
+          
 		</div>
 		<div id="body" class="home">
 			<div class="header">
@@ -112,7 +136,7 @@ function normal(x) {
 							<!-- Naslov -->
 							<input type="text" placeholder="Title" name="naslov" id="naslov" />
 							<!-- Avtor -->
-							<input type="text" placeholder="Name of the Author" name="avtor" id="avtor" />
+							<input type="text" placeholder="Author name" name="avtor" id="avtor" />
 							<!-- Cena -->
 							<select name="cena" id="cena">
 								<option value="5">5€</option>
@@ -197,12 +221,11 @@ window.onclick = function(event) {
 </script>
 
 					<!-- AJAX poizvedba na bazo -->
-<!-- AJAX poizvedba na bazo -->
 					<script type="text/javascript">
 						$(document).ready(function() {
 							$("#searchForm").submit(function() {
 								// pocistimo morebitne prejsnje rezultate
-								$("#results").empty();
+							    $("#results").empty();
 								// dobimo input
 								var naslov = $("#naslov").val();
 								var avtor = $("#avtor").val();
@@ -238,16 +261,15 @@ window.onclick = function(event) {
 								// ajax call
 								$.ajax({url: apiCall, success: function(result) {
 									var res = result;
-									//console.log(res);
 									var json = JSON.parse(result);
-									console.log(json);
-									// za vsako knjigo izpišemo podatke
+									// popup okno
+									var form = document.getElementById('results');
+									// dodajanje vrstic v popup
 									for (var i = 0; i < json.books.length; i++) {
 										var k = json["books"][i]; 
-										//console.log(k);
 										var data = document.createElement("h4");
 										data.innerHTML = "TITLE: " + k["ImeGradiva"] + " | UPLOADER: " + k["ImeUporabnika"] + " | PRICE: " + k["Cena"] + "€" + " | CONTACT: " + k["Email"];
-										$("#results").append(data);
+										form.append(data);
 									}
 								}});
 								return false;
@@ -267,7 +289,7 @@ window.onclick = function(event) {
 			<div class="body">
 				<div>
 					<h1>How does it work?</h1>
-					<p>Read about how Snap and sell works and how can make your life easier.</p>
+					<p>How Snap and sell technology works and how it can make your life easier.</p>
 					<a href="about.html" class="more">Read More</a>
 				</div>
 			</div>

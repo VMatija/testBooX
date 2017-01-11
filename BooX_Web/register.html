@@ -24,19 +24,19 @@
 				var apiCall = "api.php/register/"+Mail+"/"+Upo+"/"+Password;
 				$.ajax({url: apiCall, success: function(result) {
 					if(result){
-						$("#matching_pass").html("Your registeration was successful!").css("color", "greeen");
-						link="http://matija.azurewebsites.net/BooX_Web/login.html";
+						$("#matching_pass").html("Your registeration was successful!").css("color", "#090").css('font-family', "Century Gothic").css('font-size', '12');
+						link="http://boox.azurewebsites.net/login.html";
 							//Gre na vstopno stran. Piškotek je nastavljen. Traja 1 uro
 							window.location.href = link;
 					}
 					else{
-						$("#matching_pass").html("Your registeration was not successful!").css("color", "red");
+						$("#matching_pass").html("Your registeration was not successful!").css("color", "#f7931d").css('font-family', "Century Gothic").css('font-size', '12');
 					}
 					}});
 			}
 			else{
-				window.alert("qweqwe");
-				$("#matching_pass").html("Your register input does not meet requirements!").css("color", "red");
+				
+				$("#matching_pass").html("Your register input does not meet requirements!").css("color", "#f7931d").css('font-family', "Century Gothic").css('font-size', '12');
 			}
 		 	
 		} 
@@ -58,12 +58,12 @@
 			var enableButtonEmail = false;
 		    var email = document.getElementById("Email").value;
 		    if (validateEmail(email)) {
-		      	$("#validate_email").html("Your EMAIL is valid!").css("color", "green");
+		      	$("#validate_email").html("Your EMAIL is valid!").css("color", "#090").css('font-family', "Century Gothic").css('font-size', '12');
 		      	enableButtonEmail=true;
 		      	Mail=email;
 		    } 
 		    else {
-		      	$("#validate_email").html("Your EMAIL is not valid!").css("color", "red");
+		      	$("#validate_email").html("Your EMAIL is not valid!").css("color", "#f7931d").css('font-family', "Century Gothic").css('font-size', '12');
 		    }
 		  return enableButtonEmail;
 		}
@@ -80,19 +80,19 @@
 				    var hash2 = rez[1];
 
 				    if (hash1 != hash2)
-				        $("#matching_pass").html("Passwords do not match!").css("color", "red");
+				        $("#matching_pass").html("Passwords do not match!").css("color", "#f7931d").css('font-family', "Century Gothic").css('font-size', '12');
 				    else
-				        $("#matching_pass").html("Passwords match!").css("color", "green");
+				        $("#matching_pass").html("Passwords match!").css("color", "#090").css('font-family', "Century Gothic").css('font-size', '12');
 				    	enableButtonPass=true;
 				    	Password=hash1;
 				    	Upo=$("#Username").val()
 		    	}
 		    	else{
-		    		$("#matching_pass").html("Password does not meet requirements!").css("color", "red");
+		    		$("#matching_pass").html("Password does not meet requirements!").css("color", "#f7931d").css('font-family', "Century Gothic").css('font-size', '12');
 		    	}
 		    }
 		    else{
-		    	$("#matching_pass").html("Password does not meet requirements!").css("color", "red");
+		    	$("#matching_pass").html("Password does not meet requirements!").css("color", "#f7931d").css('font-family', "Century Gothic").css('font-size', '12');
 		    }
 		    return enableButtonPass;
 		}		
@@ -127,16 +127,19 @@
 		</div>
 		<div id="body" class="contact">
 			<div>
-								<h3 style="font-size: 25px; font-family: 'Century Gothic';">JOIN BOOX NOW</h3>
+												<h3 style="font-size: 25px; font-family: 'Century Gothic';">JOIN BOOX NOW</h3>
 				<form>
 					<input type="text" value="Username" id="Username" onblur="this.value=!this.value?'Username':this.value;" onfocus="this.select()" onclick="this.value='';">
+                    <span id="validate_email"></span>
 					<input type="text" id="Email" autocomplete="off" name="Email" value="Email" onblur="validate()" onfocus="this.select()" onclick="this.value='';">
-					<span id="validate_email"></span>
+					
+                    <span id="matching_pass"></span>
 					<input type="password" id="PasswordFirst" name="PasswordFirst" value="Password" onblur="this.value=!this.value?'':this.value;" onfocus="this.select()" onclick="this.value='';">
+                    
 					<input type="password" id="PasswordRepeat" name="PasswordRepeat" value="Repeate password" onfocus="this.select()" onclick="this.value='';" onblur="checkPasswordMatch()">
-					<span id="matching_pass"></span>
+					<span id="pass">Password must contain a minimum of 8 characters, at least one alphabet character and one number.</span>
 					<!---<textarea name="meassage" cols="50" rows="7">Message</textarea>-->
-					<input type="button" value="Sign in" id="submit" onclick="register_uporabnika()">
+					<input type="button" value="Sign in" id="submit" onclick="register_uporabnika()" style="margin-top: 25px;">
 				</form>
 			</div>
 		</div>
